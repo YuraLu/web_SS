@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .comment-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        form input[type="text"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        form input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .comment {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .comment p {
+            margin: 5px 0;
+        }
+        .comment span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="comment-container">
+        <h2>Deja un comentario:</h2>
+        <form id="comment-form">
+            <input type="text" id="name" name="name" placeholder="Tu nombre">
+            <textarea id="comment" name="comment" placeholder="Escribe tu comentario aquí"></textarea>
+            <input type="submit" value="Publicar comentario">
+        </form>
+        <div id="comments">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const commentForm = document.getElementById('comment-form');
+            const commentsContainer = document.getElementById('comments');
+
+            commentForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const comment = document.getElementById('comment').value;
+
+                const commentElement = document.createElement('div');
+                commentElement.classList.add('comment');
+
+                commentElement.innerHTML = `
+                    <p><span>${name}:</span> ${comment}</p>
+                `;
+
+                commentsContainer.appendChild(commentElement);
+
+                commentForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
